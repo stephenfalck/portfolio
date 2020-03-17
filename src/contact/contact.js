@@ -1,9 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
 
 const styles = {
     section: {
@@ -14,13 +14,13 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center'
     },
-    heading: {
-        marginTop: '64px',
-        textAlign: 'center'
+    container: {
+        minHeight: 'calc(100vh - 76px)',
+        background: 'rgb(25,25,25)',
     },
-    subHeading: {
-        textAlign: 'center',
-    }, 
+    heading: {
+        marginTop: '80px',
+    },
     formContainer: {
         display: 'flex',
         flexDirection: 'column',
@@ -74,14 +74,14 @@ class Contact extends React.Component {
         const { classes } = this.props
 
         return(
-            <div className={classes.section}>
-                <div className={classes.heading}>
+            <Grid container className={classes.container} alignContent="flex-start">
+                <Grid item container justify="center" className={classes.heading}>
                     <Typography variant="h2">Contact</Typography>
-                </div>
-                <div className={classes.subHeading}>
+                </Grid>
+                <Grid item container justify="center">
                     <Typography variant="h6">If you would like any more information or have a project you would like to discuss get in touch!</Typography>
-                </div>
-                <div className={classes.formContainer}>
+                </Grid>
+                <Grid item container justify="center">
                     <form id='contact-form' onSubmit={this.handleSubmit}>
                         <TextField 
                         classes={{root: classes.input}} 
@@ -117,8 +117,8 @@ class Contact extends React.Component {
                             Submit
                         </Button>
                     </form>
-                </div>
-            </div>
+                </Grid>
+            </Grid>
         )
     }
 }

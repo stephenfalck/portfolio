@@ -13,11 +13,20 @@ const useStyles = makeStyles({
 
 function Home() {
     const classes = useStyles();
+    const [scroll, setScroll] = React.useState(false);
+
+    const scrollDown = () => {
+        setScroll(true);
+    }
+
+    const resetScroll = () => {
+        setScroll(false);
+    }
 
     return(
         <div className={classes.container}>
-            <LandingPage className={classes.section}></LandingPage>
-            <About className={classes.section}></About>
+            <LandingPage scroll={scrollDown}></LandingPage>
+            <About scrolled={scroll} resetScroll={resetScroll}></About>
         </div>
     )
 }
