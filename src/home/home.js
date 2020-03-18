@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     container: {
         width: '100vw',
         minHeight: '200vh',
-        background: 'rgb(25,25,25)',
+        background: '#212121',
     }
 })
 

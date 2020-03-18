@@ -19,10 +19,15 @@ const useStyles = makeStyles({
     },
     name: {
         fontSize:'50px',
-        color: 'pink'
+        color: '#f06292'
     },
     learnMore: {
         fontSize: 60,
+        '&:hover': {
+            transform: 'translateY(5px)',
+            color: '#f06292'
+            //color: 'rgb(255,69,139)'
+        }
 
     }
 })    

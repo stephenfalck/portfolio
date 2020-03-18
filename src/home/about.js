@@ -21,6 +21,7 @@ function About(props){
     const classes = useStyles();
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    const {scrolled, resetScroll} = props
 
     const checkScroll = (scroll, element) => {
         if(scroll === true) {
@@ -29,9 +30,9 @@ function About(props){
     }
 
     useEffect(() => {
-        checkScroll(props.scrolled, "about");
-        props.resetScroll();
-    }, [props.scrolled])
+        checkScroll(scrolled, "about");
+        resetScroll();
+    }, [scrolled])
 
     return(
         

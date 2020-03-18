@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, withTheme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
@@ -16,7 +16,6 @@ const useStyles = makeStyles({
         justifyContent: 'space-between',
         alignItems: 'center',
         color: 'white',
-        borderTop: '1px solid white',
         padding: '0px 5px 0px 5px',
         minHeight: 'inherit'
     },
@@ -41,10 +40,10 @@ function Footer(){
             <div className={classes.footerItems}>
                 <p>Stephen Falck © 2020</p>
                 <div className={classes.icons}>
-                    <a href="https://github.com/stephenfalck" target="_blank" className={classes.footerLinks}>
+                    <a href="https://github.com/stephenfalck" rel="noopener noreferrer" target="_blank" className={classes.footerLinks}>
                         <GitHubIcon />
                     </a>
-                    <a href="https://www.linkedin.com/in/stephen-falck/" target='_blank' className={classes.footerLinks}>
+                    <a href="https://www.linkedin.com/in/stephen-falck/" rel="noopener noreferrer" target='_blank' className={classes.footerLinks}>
                         <LinkedInIcon />
                     </a>
                 </div>
