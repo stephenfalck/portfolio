@@ -18,14 +18,11 @@ const styles = {
         backgroundColor: '#424242',
         marginBottom: '5px',
         '& label':{
-            color: 'white'
+            color: '#e0e0e0'
         },
         '& div':{
         color: 'white'
         },
-    },
-    label: {
-        color: 'white'
     },
     submitButton: {
         marginTop: '5px',
@@ -87,18 +84,17 @@ class ContactForm extends React.Component {
                 <Typography variant="h6">Have a question or want to work together?</Typography>
             </Grid>
             <Grid item container justify="center" className={classes.formContainer}>
-                <form autocomplete="off" id='contact-form' onSubmit={this.handleSubmit}>
+                <form id='contact-form' onSubmit={this.handleSubmit}>
                     <TextField 
                     classes={{root: classes.input}} 
                     id="name" 
                     label="Name" 
                     value={this.state.name}
-                    inputProps={{autocomplete: "off"}}
                     required 
                     fullWidth 
                     variant="filled"
                     onChange={this.handleChange('name')}
-                    color="secondary"
+                    color="primary"
                     />
                     <TextField 
                     classes={{root: classes.input}} 
@@ -110,7 +106,7 @@ class ContactForm extends React.Component {
                     variant="filled" 
                     type='email'
                     onChange={this.handleChange('email')}
-                    color="secondary"
+                    color="primary"
                     />
                     <TextField 
                     classes={{root: classes.input}} 
@@ -123,7 +119,7 @@ class ContactForm extends React.Component {
                     multiline 
                     rows="5"
                     onChange={this.handleChange('message')}
-                    color="secondary"
+                    color="primary"
                     />
                     <Button variant="contained" color="secondary" type='submit' form="contact-form" className={classes.submitButton}>
                         Submit
