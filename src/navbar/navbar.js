@@ -9,6 +9,22 @@ const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1
     },
+    appBar: {
+        //boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+        boxShadow: 'none',
+        //transition: "box-shadow .5s ease-in-out;"
+    },
+    appBarScrolled: {
+        boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+        transition: "box-shadow .5s ease-in-out;"
+    },
+    toolbar: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        paddingTop: '8px',
+        paddingBottom: '8px',
+        transition: "background-color .5s ease-in-out, padding .5s ease-in-out;",
+    },
     list: {
         display: 'flex',
         listStyleType: 'none',
@@ -22,33 +38,21 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         padding: 0
     },
-    toolbar: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        paddingTop: '8px',
-        paddingBottom: '8px',
-        transition: "background-color .5s ease-in-out, padding .5s ease-in-out;",
-    },
-    toolbarMobile: {
-        display: 'flex',
-        justifyContent: 'center',
-        paddingTop: '8px',
-        paddingBottom: '8px',
-        backgroundColor: 'rgb(25,25,25)',
-        transition: "padding .5s ease-in-out;"
-    },
     links: {
         color: 'white',
         textDecoration: 'none',
+        '&:hover': {
+            fontWeight: 'bold'
+        }
     },
     activeLink: {
         fontWeight: 'bold',
-        textDecoration: 'underline'
+        color: theme.palette.primary.main
     }, 
     scrolled: {
         backgroundColor: 'rgb(25,25,25)',
-        paddingTop: '0px',
-        paddingBottom: '0px',
+        paddingTop: '5px',
+        paddingBottom: '5px',
     }
 
   }));
@@ -75,7 +79,7 @@ function Navbar() {
 
     return(
         <div className={classes.root}>
-            <AppBar position="fixed" color='transparent'>
+            <AppBar className={isTop ? classes.appBar : classes.appBarScrolled} position="fixed" color='transparent'>
                 <Toolbar className={classes.toolbar + " " +  handleScroll() }>
                     <ul className={matches ? classes.list : classes.listMobile}>
                         <li>

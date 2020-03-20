@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Collapse from '@material-ui/core/Collapse';
+import Fade from '@material-ui/core/Fade';
 
 
 const styles = {
@@ -35,6 +37,13 @@ class ContactForm extends React.Component {
         name:'',
         email:'',
         message:'',
+        transition: false
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            transition: true
+        })
     }
 
     handleChange = name => event => {
@@ -80,52 +89,57 @@ class ContactForm extends React.Component {
         
         return(
             <Fragment>
-            <Grid item container justify="center" className={classes.subHeading}>
-                <Typography variant="h6">Have a question or want to work together?</Typography>
-            </Grid>
-            <Grid item container justify="center" className={classes.formContainer}>
-                <form id='contact-form' onSubmit={this.handleSubmit}>
-                    <TextField 
-                    classes={{root: classes.input}} 
-                    id="name" 
-                    label="Name" 
-                    value={this.state.name}
-                    required 
-                    fullWidth 
-                    variant="filled"
-                    onChange={this.handleChange('name')}
-                    color="primary"
-                    />
-                    <TextField 
-                    classes={{root: classes.input}} 
-                    id="email" 
-                    label="Email" 
-                    value={this.state.email}
-                    required 
-                    fullWidth 
-                    variant="filled" 
-                    type='email'
-                    onChange={this.handleChange('email')}
-                    color="primary"
-                    />
-                    <TextField 
-                    classes={{root: classes.input}} 
-                    id="message" 
-                    label="Message"
-                    value={this.state.message}
-                    required 
-                    fullWidth 
-                    variant="filled" 
-                    multiline 
-                    rows="5"
-                    onChange={this.handleChange('message')}
-                    color="primary"
-                    />
-                    <Button variant="contained" color="secondary" type='submit' form="contact-form" className={classes.submitButton}>
-                        Submit
-                    </Button>
-                </form>
-            </Grid>
+                    <Grid item container justify="center" className={classes.subHeading}>
+                        <Fade in={this.state.transition} timeout={3000}>
+                            <Typography variant="h6">Have a question or want to work together?</Typography>
+                        </Fade>
+                    </Grid>
+                    <Grid item container justify="center" className={classes.formContainer}>
+                        <Collapse in={this.state.transition} timeout={3000}>
+                            <form id='contact-form' onSubmit={this.handleSubmit}>
+                                <TextField 
+                                classes={{root: classes.input}} 
+                                id="name" 
+                                label="Name" 
+                                value={this.state.name}
+                                required 
+                                fullWidth 
+                                variant="filled"
+                                onChange={this.handleChange('name')}
+                                color="primary"
+                                />
+                                <TextField 
+                                classes={{root: classes.input}} 
+                                id="email" 
+                                label="Email" 
+                                value={this.state.email}
+                                required 
+                                fullWidth 
+                                variant="filled" 
+                                type='email'
+                                onChange={this.handleChange('email')}
+                                color="primary"
+                                />
+                                <TextField 
+                                classes={{root: classes.input}} 
+                                id="message" 
+                                label="Message"
+                                value={this.state.message}
+                                required 
+                                fullWidth 
+                                variant="filled" 
+                                multiline 
+                                rows="5"
+                                onChange={this.handleChange('message')}
+                                color="primary"
+                                />
+                                <Button variant="contained" color="secondary" type='submit' form="contact-form" className={classes.submitButton}>
+                                    Submit
+                                </Button>
+                            </form>
+                        </Collapse>
+                    </Grid>
+            
             </Fragment>
         )
     }

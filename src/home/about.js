@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp';
 import BusinessCenterSharpIcon from '@material-ui/icons/BusinessCenterSharp';
+import Collapse from '@material-ui/core/Collapse';
+import Zoom from '@material-ui/core/Zoom';
 
 const useStyles = makeStyles({
     section: {
@@ -15,6 +17,9 @@ const useStyles = makeStyles({
         minHeight: '100vh',
         padding: '0px 15px 0px 15px'
     },
+    icons: {
+        fontSize: '5rem'
+    }
 })
 
 function About(props){
@@ -22,6 +27,15 @@ function About(props){
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const {scrolled, resetScroll} = props
+    const [aboutAnimations, setAboutAnimations] = React.useState({
+        title1: false,
+        title2: false,
+        paragraph1: false,
+        paragraph2: false,
+        icon1: false,
+        icon2: false
+    })
+    
 
     const checkScroll = (scroll, element) => {
         if(scroll === true) {
@@ -29,9 +43,28 @@ function About(props){
         }
     }
 
+    
+    const checkPositions = () => {
+        let elements = document.querySelectorAll('.hiddenAboutAnimations');
+        let obj= {};
+
+        for (let i=0; i<elements.length; i++) {
+            let element = elements[i].id;
+            let positionFromTop = elements[i].getBoundingClientRect().top;
+            let windowHeight = window.innerHeight;
+
+            if(positionFromTop - windowHeight <= 0) {
+                obj[element] = true
+            }
+            
+        }
+        setAboutAnimations(obj)
+    }
+
     useEffect(() => {
         checkScroll(scrolled, "about");
         resetScroll();
+        window.addEventListener('scroll', checkPositions);
     }, [scrolled])
 
     return(
@@ -39,24 +72,37 @@ function About(props){
             <Grid container alignItems="center" id="about" className={matches ? classes.section : classes.sectionMobile} >
                 <Grid container item xs={12}>
                     <Grid item sm={6} xs={12}>
-                        <Typography variant='h5' className={classes.title}> A little more about me</Typography>
-                        <p>I'm a law graduate turned web developer based in London, England. My focus is on writing clean, 
-                            elegant and efficient code, to help turn your ideas into a finished product.</p>
+                        <Collapse in={aboutAnimations['title1']} unmountOnExit={false} timeout={2000}>
+                            <Typography variant='h5' className="hiddenAboutAnimations" id="title1"> A little more about me</Typography>
+                        </Collapse>
+                        <Collapse in={aboutAnimations['paragraph1']} unmountOnExit={false} timeout={2000}>
+                            <p className="hiddenAboutAnimations" id="paragraph1">I'm a law graduate turned web developer based in London, England. My focus is on writing clean, 
+                                elegant and efficient code, to help turn your ideas into a finished product.</p>
+                        </Collapse>   
                     </Grid>
                     <Grid item container sm={6} xs={12} justify="center" alignItems="center">
-                        <AccountCircleSharpIcon fontSize="large" />
+                    <Zoom in={aboutAnimations['icon1']} >
+                            <AccountCircleSharpIcon className={classes.icons + " " + "hiddenAboutAnimations"} id="icon1" />
+                    </Zoom>
                     </Grid>
                 </Grid>
                 <Grid container item xs={12}>
                     <Grid item container sm={6} xs={12} justify="center" alignItems="center">
-                        <BusinessCenterSharpIcon fontSize="large" />
+                        <Zoom direction="right" in={aboutAnimations['icon2']} timeout={1000}>
+                            <BusinessCenterSharpIcon className={classes.icons + " " + "hiddenAboutAnimations"} id="icon2" />
+                        </Zoom>
+                        
                     </Grid>
                     <Grid item sm={6} xs={12}>
-                        <Typography variant='h5'>Skills & Experience</Typography>
-                        <p className={classes.description}>My greatest expertise is in Front end Development. HTML, CSS, 
-                        JS, with my greatest passion being building interactive web apps using the React.JS framework. I also 
-                        have experience working Full stack, utilising Ruby on Rails on the server side and PostgreSQL as a relational 
-                        database</p>
+                        <Collapse direction="right" in={aboutAnimations['title2']} timeout={2000}>
+                            <Typography variant='h5' className="hiddenAboutAnimations" id="title2">Skills & Experience</Typography>
+                            </Collapse>
+                        <Collapse direction="right" in={aboutAnimations['paragraph2']} timeout={2000}>
+                            <p className="hiddenAboutAnimations" id="paragraph2">My greatest expertise is in Front end Development. HTML, CSS, 
+                            JS, with my greatest passion being building interactive web apps using the React.JS framework. I also 
+                            have experience working Full stack, utilising Ruby on Rails on the server side and PostgreSQL as a relational 
+                            database</p>
+                            </Collapse>
                     </Grid>
                 </Grid>
             </Grid>

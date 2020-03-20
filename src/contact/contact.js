@@ -4,10 +4,13 @@ import ContactForm from './contact_form';
 import MessageSubmitted from './message_submitted';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Slide from '@material-ui/core/Slide';
+import Collapse from '@material-ui/core/Collapse';
 
 const styles = {
     container: {
-        minHeight: 'calc(100vh - 76px)',
+        //minHeight: 'calc(100vh - 75px)',
+        minHeight: '100vh',
         background: '#212121',
     },
     heading: {
@@ -34,7 +37,14 @@ const styles = {
 
 class Contact extends React.Component {
     state = {
-        submitted: false
+        submitted: false,
+        transition: false
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            transition: true
+        })
     }
 
     submitForm = () => {
@@ -58,8 +68,12 @@ class Contact extends React.Component {
         return(
             <Grid container className={classes.container} alignContent="flex-start" >
                 <Grid item container justify="center" alignItems="center" direction="column" className={classes.heading}>
-                    <Typography variant="h2">Contact</Typography>
-                    <hr className={classes.hr}></hr>
+                    <Slide direction="right" in={this.state.transition} timeout={500} mountOnEnter>
+                        <Typography variant="h2">Contact</Typography>
+                    </Slide>
+                    <Slide direction="left" in={this.state.transition} timeout={1000} mountOnEnter>
+                        <hr className={classes.hr}></hr>
+                    </Slide>
                 </Grid>
                 {this.renderComponent(this.state.submitted)}
             </Grid>

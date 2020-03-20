@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PortfolioItem from './portfolio_item';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
@@ -6,6 +6,8 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Grow from '@material-ui/core/Grow';
+import Slide from '@material-ui/core/Slide';
 import Kattehaugen from '../images/portfolio_images/Screenshot 2020-03-01 at 16.44.12.png';
 import Kattehaugen1 from '../images/project_screenshots/image_original_KH.jpg';
 import Kattehaugen2 from '../images/project_screenshots/image_original (1)_KH.jpg';
@@ -19,7 +21,8 @@ import LocalAid4 from '../images/project_screenshots/image_original (3).jpg';
 
 const useStyles = makeStyles(theme => ({
     section: {
-        minHeight: 'calc(100vh - 76px)',
+        //minHeight: 'calc(100vh - 75px)',
+        minHeight: '100vh',
         background: '#212121',
     },
     heading: {
@@ -103,24 +106,44 @@ function Portfolio() {
     const classes = useStyles()
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'))
+
+    const [transition, setTransition] = React.useState(false);
+
+    useEffect(() => {
+        setTransition(true)
+    }, [])
+
+    const randomTransitionTime = () => {
+        const min = 3000;
+        const max = 4000;
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+
     return(
         <Grid container direction="column" className={classes.section}>
             <Grid container justify='center' alignItems="center" item xs={12} className={classes.heading} direction="column">
-                <Typography variant="h2">Portfolio</Typography>
-                <hr className={classes.hr}></hr>
+                <Slide direction="right" in={transition} timeout={500} mountOnEnter>
+                    <Typography variant="h2">Portfolio</Typography>
+                </Slide>
+                <Slide direction="left" in={transition} timeout={1000} mountOnEnter>
+                    <hr className={classes.hr}></hr>
+                </Slide>
             </Grid>
                 <GridList cellHeight={300} className={matches ? classes.gridList : ""}>
                     {tileData.map(tile => (
-                        <GridListTile cols={ matches ? 1 : 2 } key={tile.gallery[0].image} className={classes.tile}>
-                            <img src={tile.gallery[0].image} alt={tile.title} />
-                            <PortfolioItem
-                                title={tile.title} 
-                                stack={tile.stack} 
-                                description={tile.description}
-                                github={tile.github}
-                                gallery={tile.gallery}
-                            />
-                        </GridListTile>
+                        <Grow in={transition} timeout={randomTransitionTime()} key={randomTransitionTime()}>
+                            <GridListTile cols={ matches ? 1 : 2 } key={tile.gallery[0].image} className={classes.tile}>
+                                <img src={tile.gallery[0].image} alt={tile.title} />
+                                <PortfolioItem
+                                    title={tile.title} 
+                                    stack={tile.stack} 
+                                    description={tile.description}
+                                    github={tile.github}
+                                    gallery={tile.gallery}
+                                />
+                            </GridListTile>
+                        </Grow>
                         ))}    
                 </GridList>
         </Grid>
