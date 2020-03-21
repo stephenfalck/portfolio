@@ -1,5 +1,7 @@
 import React from 'react';
+import { useTheme } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ContactForm from './contact_form';
 import MessageSubmitted from './message_submitted';
 import Grid from '@material-ui/core/Grid';
@@ -60,10 +62,9 @@ class Contact extends React.Component {
             return <MessageSubmitted />
         }
     }
-
   
     render() {
-        const { classes } = this.props
+        const { classes } = this.props;
 
         return(
             <Grid container className={classes.container} alignContent="flex-start" >

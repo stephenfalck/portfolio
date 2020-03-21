@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
+import Collapse from '@material-ui/core/Collapse';
 import Kattehaugen from '../images/portfolio_images/Screenshot 2020-03-01 at 16.44.12.png';
 import Kattehaugen1 from '../images/project_screenshots/image_original_KH.jpg';
 import Kattehaugen2 from '../images/project_screenshots/image_original (1)_KH.jpg';
@@ -36,7 +37,10 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '100vw',
     },
     gridList: {
-        padding: '0px 20px 0px 20px'
+        padding: '0px 20px 0px 20px',
+    },
+    root: {
+        margin: 0,
     }
 }))
  
@@ -103,9 +107,9 @@ const tileData = [
 ]
 
 function Portfolio() {
-    const classes = useStyles()
+    const classes = useStyles();
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('sm'))
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
     const [transition, setTransition] = React.useState(false);
 
@@ -130,10 +134,9 @@ function Portfolio() {
                     <hr className={classes.hr}></hr>
                 </Slide>
             </Grid>
-                <GridList cellHeight={300} className={matches ? classes.gridList : ""}>
+                <GridList cellHeight={350} spacing={0} className={matches ? classes.gridList : ''}>
                     {tileData.map(tile => (
-                        <Grow in={transition} timeout={randomTransitionTime()} key={randomTransitionTime()}>
-                            <GridListTile cols={ matches ? 1 : 2 } key={tile.gallery[0].image} className={classes.tile}>
+                            <GridListTile cols={ matches ? 1 : 2 } style={{padding:'3px'}} key={tile.gallery[0].image} className={classes.tile}> 
                                 <img src={tile.gallery[0].image} alt={tile.title} />
                                 <PortfolioItem
                                     title={tile.title} 
@@ -143,7 +146,6 @@ function Portfolio() {
                                     gallery={tile.gallery}
                                 />
                             </GridListTile>
-                        </Grow>
                         ))}    
                 </GridList>
         </Grid>

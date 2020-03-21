@@ -11,6 +11,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CancelIcon from '@material-ui/icons/Cancel';
+import Grow from '@material-ui/core/Grow';
 
 
 const useStyles = makeStyles(theme => ({
@@ -30,7 +31,6 @@ function PortfolioItem(props) {
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
-
     const openModal = () => {
         setOpen(true)
     }

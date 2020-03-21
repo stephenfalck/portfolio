@@ -10,10 +10,19 @@ import Fade from '@material-ui/core/Fade';
 
 const styles = {
     formContainer: {
-        paddingTop: '50px'
+        //paddingTop: '50px'
+        margin: '30px 10px 20px 10px'
+    },
+    formContainerMobile: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '76%',
+        padding: '30px 10px 20px 10px',
     },
     subHeading: {
-        color: '#f06292'
+        color: '#f06292',
+        margin: '0px 10px 0px 10px'
         //color: '#f50057'
     },
     input: {
@@ -91,7 +100,7 @@ class ContactForm extends React.Component {
             <Fragment>
                     <Grid item container justify="center" className={classes.subHeading}>
                         <Fade in={this.state.transition} timeout={3000}>
-                            <Typography variant="h6">Have a question or want to work together?</Typography>
+                            <Typography variant="h6" align='center'>Have a question or want to work together?</Typography>
                         </Fade>
                     </Grid>
                     <Grid item container justify="center" className={classes.formContainer}>

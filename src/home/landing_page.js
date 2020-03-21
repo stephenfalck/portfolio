@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 import Background2 from '../images/jc-gellidon-EH9f0TI5wco-unsplash_cropped.jpg'
@@ -23,6 +24,11 @@ const useStyles = makeStyles({
     header: {
         marginTop: '20%',
     },
+    headerMobile: {
+        marginTop: '20%',
+        padding: '10px',
+        textAlign: 'center',
+    },
     name: {
         fontSize:'50px',
         color: '#f06292'
@@ -32,19 +38,19 @@ const useStyles = makeStyles({
         '&:hover': {
             transform: 'translateY(5px)',
             color: '#f06292'
-            //color: 'rgb(255,69,139)'
         }
 
     }
 })    
 
 function LandingPage(props){
-    const classes = useStyles()
+    const classes = useStyles();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
     return(
         <Grid container direction="row" wrap='wrap' justify="center" alignItems="center" className={classes.container}>
-            
-            <Grid item container justify='center' className={classes.header}>
+            <Grid item container justify='center' className={matches ? classes.header : classes.headerMobile}>
                 <Fade in={true} timeout={3000}>
                     <Typography  variant="h4">
                         <span className={classes.name}>Stephen Falck</span><br></br>Full-stack web developer
@@ -56,7 +62,6 @@ function LandingPage(props){
                     <ExpandMoreRoundedIcon onClick={props.scroll}  className={classes.learnMore} fontSize='large'/>
                 </Fade>
             </Grid>
-            
         </Grid>
     )
 }

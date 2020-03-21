@@ -8,24 +8,31 @@ import BusinessCenterSharpIcon from '@material-ui/icons/BusinessCenterSharp';
 import Collapse from '@material-ui/core/Collapse';
 import Zoom from '@material-ui/core/Zoom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme =>({
     section: {
         minHeight: '100vh',
-        padding: '0px 50px 0px 50px'
-    },
-    sectionMobile: {
-        minHeight: '100vh',
-        padding: '0px 15px 0px 15px'
+        padding: '0px 50px 0px 50px',
+        [theme.breakpoints.down('xs')]: {
+            padding: '0px 15px 0px 15px'
+        }
     },
     icons: {
-        fontSize: '5rem'
+        fontSize: '5rem',
+        [theme.breakpoints.down('xs')]: {
+            marginBottom: '15px'
+        }
+    },
+    icon1: {
+        [theme.breakpoints.down('xs')]: {
+            order: -1
+        }
     }
-})
+}))
 
 function About(props){
     const classes = useStyles();
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    //const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const {scrolled, resetScroll} = props
     const [aboutAnimations, setAboutAnimations] = React.useState({
         title1: false,
@@ -69,7 +76,7 @@ function About(props){
 
     return(
         
-            <Grid container alignItems="center" id="about" className={matches ? classes.section : classes.sectionMobile} >
+            <Grid container alignItems="center" id="about" className={classes.section} >
                 <Grid container item xs={12}>
                     <Grid item sm={6} xs={12}>
                         <Collapse in={aboutAnimations['title1']} unmountOnExit={false} timeout={2000}>
@@ -80,7 +87,7 @@ function About(props){
                                 elegant and efficient code, to help turn your ideas into a finished product.</p>
                         </Collapse>   
                     </Grid>
-                    <Grid item container sm={6} xs={12} justify="center" alignItems="center">
+                    <Grid item container sm={6} xs={12} justify="center" alignItems="center" className={classes.icon1}>
                     <Zoom in={aboutAnimations['icon1']} >
                             <AccountCircleSharpIcon className={classes.icons + " " + "hiddenAboutAnimations"} id="icon1" />
                     </Zoom>

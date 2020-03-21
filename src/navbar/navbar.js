@@ -13,10 +13,19 @@ const useStyles = makeStyles(theme => ({
         //boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
         boxShadow: 'none',
         //transition: "box-shadow .5s ease-in-out;"
+        maxWidth: '100vw',
+        left: 0,
+    },
+    appBarMobile: {
+        [theme.breakpoints.down('xs')]: {
+            backgroundColor: 'rgb(25,25,25)'
+        }
     },
     appBarScrolled: {
         boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
-        transition: "box-shadow .5s ease-in-out;"
+        transition: "box-shadow .5s ease-in-out;",
+        maxWidth: '100vw',
+        left: 0
     },
     toolbar: {
         display: 'flex',
@@ -79,7 +88,7 @@ function Navbar() {
 
     return(
         <div className={classes.root}>
-            <AppBar className={isTop ? classes.appBar : classes.appBarScrolled} position="fixed" color='transparent'>
+            <AppBar className={isTop ? classes.appBar : classes.appBarScrolled} classes={{root: classes.appBarMobile}} position={matches ? "fixed" : "absolute"} color={matches ? 'transparent' : 'default'}>
                 <Toolbar className={classes.toolbar + " " +  handleScroll() }>
                     <ul className={matches ? classes.list : classes.listMobile}>
                         <li>
