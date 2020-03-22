@@ -6,9 +6,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
-import Collapse from '@material-ui/core/Collapse';
 import Kattehaugen from '../images/portfolio_images/Screenshot 2020-03-01 at 16.44.12.png';
 import Kattehaugen1 from '../images/project_screenshots/image_original_KH.jpg';
 import Kattehaugen2 from '../images/project_screenshots/image_original (1)_KH.jpg';
@@ -20,11 +18,19 @@ import LocalAid2 from '../images/project_screenshots/image_original (1).jpg';
 import LocalAid3 from '../images/project_screenshots/image_original (2).jpg';
 import LocalAid4 from '../images/project_screenshots/image_original (3).jpg';
 
+const randomTransitionTime = () => {
+    const min = 3
+    let num = Math.random() + min
+    let string = num.toString()
+    return `${string}s`
+}
+
 const useStyles = makeStyles(theme => ({
     section: {
         //minHeight: 'calc(100vh - 75px)',
         minHeight: '100vh',
         background: '#212121',
+        paddingBottom: '20px'
     },
     heading: {
         marginTop: '100px',
@@ -33,11 +39,22 @@ const useStyles = makeStyles(theme => ({
         width: '10%',
         marginBottom: '30px'
     },
+    '@keyframes fadein': {
+        from: { opacity: 0 },
+        to: { opacity: 1 }
+    },
+    '@keyframes grow': {
+        from: {transform: 'scale(0)'},
+        to: {transform: 'scale(1)'}
+    },
     tile: {
         maxWidth: '100vw',
+        animation: `$fadein ${randomTransitionTime()}, $grow 2s`,
     },
     gridList: {
-        padding: '0px 20px 0px 20px',
+        [theme.breakpoints.up('md')]: {
+            padding: '0px 20px 0px 20px',
+        },
     },
     root: {
         margin: 0,
@@ -109,7 +126,7 @@ const tileData = [
 function Portfolio() {
     const classes = useStyles();
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    const matches = useMediaQuery(theme.breakpoints.up('md'));
 
     const [transition, setTransition] = React.useState(false);
 
@@ -117,11 +134,7 @@ function Portfolio() {
         setTransition(true)
     }, [])
 
-    const randomTransitionTime = () => {
-        const min = 3000;
-        const max = 4000;
-        return Math.floor(Math.random() * (max - min) + min);
-    }
+    
 
 
     return(
@@ -134,7 +147,7 @@ function Portfolio() {
                     <hr className={classes.hr}></hr>
                 </Slide>
             </Grid>
-                <GridList cellHeight={350} spacing={0} className={matches ? classes.gridList : ''}>
+                <GridList cellHeight={350} spacing={0} className={classes.gridList}>
                     {tileData.map(tile => (
                             <GridListTile cols={ matches ? 1 : 2 } style={{padding:'3px'}} key={tile.gallery[0].image} className={classes.tile}> 
                                 <img src={tile.gallery[0].image} alt={tile.title} />

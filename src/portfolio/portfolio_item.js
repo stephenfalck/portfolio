@@ -1,5 +1,5 @@
-import React, { useEffect, Fragment } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import PortfolioCarousel from './portfolio_carousel';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import InfoIcon from '@material-ui/icons/Info';
@@ -11,7 +11,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CancelIcon from '@material-ui/icons/Cancel';
-import Grow from '@material-ui/core/Grow';
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,16 +19,19 @@ const useStyles = makeStyles(theme => ({
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
-      },
-      link: {
-          color: theme.palette.secondary.main
-      }
+    },
+    link: {
+        color: theme.palette.secondary.main
+    },
+    github: {
+        fontWeight: 'bold'
+    }
 }))
 
 
 function PortfolioItem(props) {
     const classes = useStyles()
-    const theme = useTheme()
+    //const theme = useTheme()
     const [open, setOpen] = React.useState(false)
     const openModal = () => {
         setOpen(true)
@@ -60,7 +62,7 @@ function PortfolioItem(props) {
                 <DialogTitle id="scroll-dialog-title">{props.title}</DialogTitle>
                 <PortfolioCarousel gallery={props.gallery} />
                 <DialogContent>
-                    <DialogContentText>
+                    <DialogContentText className={classes.github}>
                         View repository on: <a href={props.github} className={classes.link} rel="noopener noreferrer" target='blank_'>Github</a>
                     </DialogContentText>
                     <DialogContentText>

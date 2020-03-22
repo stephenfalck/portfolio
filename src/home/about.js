@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp';
@@ -20,7 +19,8 @@ const useStyles = makeStyles(theme =>({
         fontSize: '5rem',
         [theme.breakpoints.down('xs')]: {
             marginBottom: '15px'
-        }
+        },
+        color: '#f06292'
     },
     icon1: {
         [theme.breakpoints.down('xs')]: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme =>({
 
 function About(props){
     const classes = useStyles();
-    const theme = useTheme();
+    //const theme = useTheme();
     //const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const {scrolled, resetScroll} = props
     const [aboutAnimations, setAboutAnimations] = React.useState({
@@ -72,7 +72,10 @@ function About(props){
         checkScroll(scrolled, "about");
         resetScroll();
         window.addEventListener('scroll', checkPositions);
-    }, [scrolled])
+        return ()=> {
+            window.removeEventListener('scroll', checkPositions)
+        }
+    }, [scrolled, resetScroll])
 
     return(
         
@@ -83,20 +86,20 @@ function About(props){
                             <Typography variant='h5' className="hiddenAboutAnimations" id="title1"> A little more about me</Typography>
                         </Collapse>
                         <Collapse in={aboutAnimations['paragraph1']} unmountOnExit={false} timeout={2000}>
-                            <p className="hiddenAboutAnimations" id="paragraph1">I'm a law graduate turned web developer based in London, England. My focus is on writing clean, 
+                            <p className="hiddenAboutAnimations" id="paragraph1">I'm a law graduate turned web developer based in London. My focus is on writing clean, 
                                 elegant and efficient code, to help turn your ideas into a finished product.</p>
                         </Collapse>   
                     </Grid>
                     <Grid item container sm={6} xs={12} justify="center" alignItems="center" className={classes.icon1}>
                     <Zoom in={aboutAnimations['icon1']} >
-                            <AccountCircleSharpIcon className={classes.icons + " " + "hiddenAboutAnimations"} id="icon1" />
+                            <AccountCircleSharpIcon className={classes.icons + " hiddenAboutAnimations"} id="icon1" />
                     </Zoom>
                     </Grid>
                 </Grid>
                 <Grid container item xs={12}>
                     <Grid item container sm={6} xs={12} justify="center" alignItems="center">
                         <Zoom direction="right" in={aboutAnimations['icon2']} timeout={1000}>
-                            <BusinessCenterSharpIcon className={classes.icons + " " + "hiddenAboutAnimations"} id="icon2" />
+                            <BusinessCenterSharpIcon className={classes.icons + " hiddenAboutAnimations"} id="icon2" />
                         </Zoom>
                         
                     </Grid>
@@ -105,7 +108,7 @@ function About(props){
                             <Typography variant='h5' className="hiddenAboutAnimations" id="title2">Skills & Experience</Typography>
                             </Collapse>
                         <Collapse direction="right" in={aboutAnimations['paragraph2']} timeout={2000}>
-                            <p className="hiddenAboutAnimations" id="paragraph2">My greatest expertise is in Front end Development. HTML, CSS, 
+                            <p className="hiddenAboutAnimations" id="paragraph2">My greatest strength is Front end Development. HTML, CSS, 
                             JS, with my greatest passion being building interactive web apps using the React.JS framework. I also 
                             have experience working Full stack, utilising Ruby on Rails on the server side and PostgreSQL as a relational 
                             database</p>

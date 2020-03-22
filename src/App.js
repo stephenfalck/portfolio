@@ -8,7 +8,7 @@ import Home from './home/home';
 import Portfolio from './portfolio/portfolio';
 import Contact from './contact/contact';
 import Footer from './footer/footer';
-import './App.css';
+//import './App.css';
 
 const theme = createMuiTheme({
   palette: {

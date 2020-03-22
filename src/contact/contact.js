@@ -1,13 +1,11 @@
 import React from 'react';
-import { useTheme } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ContactForm from './contact_form';
 import MessageSubmitted from './message_submitted';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
-import Collapse from '@material-ui/core/Collapse';
+
 
 const styles = {
     container: {

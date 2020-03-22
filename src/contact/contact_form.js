@@ -61,11 +61,8 @@ class ContactForm extends React.Component {
         });
     };
 
-
-
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
 
         const template = process.env.REACT_APP_EMAILJS_TEMPLATEID
 
@@ -108,39 +105,42 @@ class ContactForm extends React.Component {
                             <form id='contact-form' onSubmit={this.handleSubmit}>
                                 <TextField 
                                 classes={{root: classes.input}} 
+                                className="formInput"
                                 id="name" 
                                 label="Name" 
                                 value={this.state.name}
-                                required 
                                 fullWidth 
                                 variant="filled"
                                 onChange={this.handleChange('name')}
                                 color="primary"
+                                required
                                 />
                                 <TextField 
                                 classes={{root: classes.input}} 
+                                className="formInput"
                                 id="email" 
                                 label="Email" 
                                 value={this.state.email}
-                                required 
                                 fullWidth 
                                 variant="filled" 
                                 type='email'
                                 onChange={this.handleChange('email')}
                                 color="primary"
+                                required
                                 />
                                 <TextField 
                                 classes={{root: classes.input}} 
+                                className="formInput"
                                 id="message" 
                                 label="Message"
                                 value={this.state.message}
-                                required 
                                 fullWidth 
                                 variant="filled" 
                                 multiline 
                                 rows="5"
                                 onChange={this.handleChange('message')}
                                 color="primary"
+                                required
                                 />
                                 <Button variant="contained" color="secondary" type='submit' form="contact-form" className={classes.submitButton}>
                                     Submit
