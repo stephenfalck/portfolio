@@ -92,10 +92,10 @@ function Navbar() {
                 <Toolbar className={classes.toolbar + " " +  handleScroll() }>
                     <ul className={matches ? classes.list : classes.listMobile}>
                         <li>
-                        <NavLink exact to="/" activeClassName={classes.activeLink} className={classes.links}>Home</NavLink>
+                        <NavLink exact to="/portfolio" activeClassName={classes.activeLink} className={classes.links}>Home</NavLink>
                         </li>
                         <li>
-                        <NavLink exact to="/portfolio" activeClassName={classes.activeLink} className={classes.links}>Portfolio</NavLink>
+                        <NavLink exact to="/projects" activeClassName={classes.activeLink} className={classes.links}>Portfolio</NavLink>
                         </li>
                         <li>
                         <NavLink exact to="/contact" activeClassName={classes.activeLink} className={classes.links}>Contact</NavLink>

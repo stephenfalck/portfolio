@@ -28,8 +28,8 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/portfolio" component={Portfolio} />
+          <Route exact path="/portfolio" component={Home} />
+          <Route path="/projects" component={Portfolio} />
           <Route path="/contact" component={Contact} />
         </Switch>
         <Footer />
