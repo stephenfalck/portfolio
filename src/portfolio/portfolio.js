@@ -141,7 +141,7 @@ function Portfolio() {
         <Grid container direction="column" className={classes.section}>
             <Grid container justify='center' alignItems="center" item xs={12} className={classes.heading} direction="column">
                 <Slide direction="right" in={transition} timeout={500} mountOnEnter>
-                    <Typography variant="h2">Portfolio</Typography>
+                    <Typography variant="h2">Projects</Typography>
                 </Slide>
                 <Slide direction="left" in={transition} timeout={1000} mountOnEnter>
                     <hr className={classes.hr}></hr>
